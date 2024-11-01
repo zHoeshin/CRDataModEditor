@@ -14,6 +14,7 @@ config/name="Cosmic Reach Data Mod Editor"
 config/version="1.0.0"
 run/main_scene="res://main/main.tscn"
 config/custom_user_dir_name="crdme"
+config/use_custom_user_dir=true
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
