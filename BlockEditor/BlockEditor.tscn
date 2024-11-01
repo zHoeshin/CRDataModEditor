@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://4h8omj5k5hq1"]
+
+[ext_resource type="Script" path="res://BlockEditor/block_editor.gd" id="1_u6823"]
+[ext_resource type="Script" path="res://Utils/dictionary_input.gd" id="2_yy43u"]
+[ext_resource type="Texture2D" uid="uid://s7mn7x5e6nny" path="res://icon/plus.svg" id="3_rigia"]
+
+[node name="BlockEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u6823")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="propertiesWrapper" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="properties" type="VBoxContainer" parent="propertiesWrapper"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="commonInfo" type="VBoxContainer" parent="propertiesWrapper/properties"]
+layout_mode = 2
+
+[node name="name" type="HBoxContainer" parent="propertiesWrapper/properties/commonInfo"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="propertiesWrapper/properties/commonInfo/name"]
+layout_mode = 2
+text = "Block String ID: "
+
+[node name="value" type="LineEdit" parent="propertiesWrapper/properties/commonInfo/name"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="blockStates" type="VBoxContainer" parent="propertiesWrapper/properties"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="newblockstate" type="VBoxContainer" parent="propertiesWrapper/properties"]
+layout_mode = 2
+script = ExtResource("2_yy43u")
+
+[node name="add" type="Button" parent="propertiesWrapper/properties/newblockstate"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "New Block State"
+icon = ExtResource("3_rigia")
+flat = true
+
+[node name="Control2" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="text_changed" from="propertiesWrapper/properties/commonInfo/name/value" to="." method="onChange"]
+[connection signal="pressed" from="propertiesWrapper/properties/newblockstate/add" to="." method="addEmptyBlockState"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfw8sb065m1qf"]
+
+[ext_resource type="Script" path="res://Utils/dictionary_input.gd" id="1_pa0ry"]
+[ext_resource type="Texture2D" uid="uid://s7mn7x5e6nny" path="res://icon/plus.svg" id="2_r40jh"]
+
+[node name="DictionaryInput" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pa0ry")
+
+[node name="pairs" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="addpair" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "}"
+icon = ExtResource("2_r40jh")
+flat = true
+
+[connection signal="pressed" from="addpair" to="." method="addPair"]

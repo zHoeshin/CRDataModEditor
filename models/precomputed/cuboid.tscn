@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://crclx47jrgjw4"]
+
+[ext_resource type="Shader" path="res://models/precomputed/cuboid.gdshader" id="1_2knax"]
+[ext_resource type="Texture2D" uid="uid://g5ne0n1k0o2a" path="res://icon/check.svg" id="2_qqye4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oo4ts"]
+render_priority = 0
+shader = ExtResource("1_2knax")
+shader_parameter/NegXUVstart = Vector2(0, 0)
+shader_parameter/NegXUVsize = Vector2(1, 1)
+shader_parameter/PosXUVstart = Vector2(0, 0)
+shader_parameter/PosXUVsize = Vector2(1, 1)
+shader_parameter/NegYUVstart = Vector2(0, 0)
+shader_parameter/NegYUVsize = Vector2(1, 1)
+shader_parameter/PosYUVstart = Vector2(0, 0)
+shader_parameter/PosYUVsize = Vector2(1, 1)
+shader_parameter/NegZUVstart = Vector2(0, 0)
+shader_parameter/NegZUVsize = Vector2(1, 1)
+shader_parameter/PosZUVstart = Vector2(0, 0)
+shader_parameter/PosZUVsize = Vector2(1, 1)
+shader_parameter/NegYTexture = ExtResource("2_qqye4")
+
+[sub_resource type="BoxMesh" id="BoxMesh_tb47c"]
+
+[node name="Cuboid" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_oo4ts")
+mesh = SubResource("BoxMesh_tb47c")

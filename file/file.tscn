@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://uv5y8hi63bqd"]
+
+[ext_resource type="Script" path="res://file/file.gd" id="1_qks2y"]
+[ext_resource type="Texture2D" uid="uid://c3kewo85kkpr1" path="res://icon/circle.svg" id="1_wdttx"]
+[ext_resource type="Texture2D" uid="uid://g5ne0n1k0o2a" path="res://icon/check.svg" id="2_pqymq"]
+[ext_resource type="Texture2D" uid="uid://ggawe2aelrni" path="res://icon/cross.svg" id="3_65mfx"]
+[ext_resource type="Texture2D" uid="uid://bna1noa74wxtq" path="res://icon/pencil.svg" id="4_56dtl"]
+[ext_resource type="Texture2D" uid="uid://cr67tquet1bnw" path="res://icon/bin.svg" id="5_ot8fp"]
+
+[node name="file" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_qks2y")
+
+[node name="name" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("1_wdttx")
+flat = true
+alignment = 0
+text_overrun_behavior = 1
+
+[node name="editname" type="LineEdit" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+flat = true
+
+[node name="deleteconfirm" type="Button" parent="."]
+visible = false
+layout_mode = 2
+icon = ExtResource("2_pqymq")
+flat = true
+
+[node name="deletecancel" type="Button" parent="."]
+visible = false
+layout_mode = 2
+icon = ExtResource("3_65mfx")
+flat = true
+
+[node name="rename" type="Button" parent="."]
+layout_mode = 2
+icon = ExtResource("4_56dtl")
+flat = true
+
+[node name="delete" type="Button" parent="."]
+layout_mode = 2
+icon = ExtResource("5_ot8fp")
+flat = true
+
+[connection signal="pressed" from="name" to="." method="onPressed"]
+[connection signal="focus_exited" from="editname" to="." method="_on_editname_text_change_rejected"]
+[connection signal="text_change_rejected" from="editname" to="." method="_on_editname_text_change_rejected"]
+[connection signal="text_submitted" from="editname" to="." method="_on_editname_text_submitted"]
+[connection signal="pressed" from="deleteconfirm" to="." method="_on_deleteconfirm_pressed"]
+[connection signal="pressed" from="deletecancel" to="." method="_on_deletecancel_pressed"]
+[connection signal="pressed" from="rename" to="." method="_on_rename_pressed"]
+[connection signal="pressed" from="delete" to="." method="_on_delete_pressed"]

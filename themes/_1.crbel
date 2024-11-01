@@ -1,0 +1,35 @@
+name eerie:block_events_wallpaper
+inherit base:block_events_default
+trigger addBottomTrim {
+	set params { "bottomtrim": "true" } at 0 0 0
+}
+trigger addTopTrim {
+	set params { "toptrim": "true" } at 0 0 0
+}
+trigger checkRemoveBottomTrim {
+	run_trigger removeBottomTrim at 0 1 0
+}
+trigger checkRemoveTopTrim {
+	run_trigger removeTopTrim at 0 -1 0
+}
+trigger onBreak {
+	set block base:air[default] at 0 0 0
+	play base:sounds/blocks/block-break.ogg with pan 0, pitch 1, volume 1
+	drop item at 0 0 0
+	run_trigger addBottomTrim at 0 1 0
+	run_trigger addTopTrim at 0 -1 0
+}
+trigger onPlace {
+	set block eerie:wallpaper[toptrim=true,bottomtrim=true] at 0 0 0
+	play base:sounds/blocks/block-place.ogg with pan 0, pitch 1, volume 1.2
+	run_trigger removeTopTrim at 0 -1 0
+	run_trigger removeBottomTrim at 0 1 0
+	run_trigger checkRemoveTopTrim at 0 1 0
+	run_trigger checkRemoveBottomTrim at 0 -1 0
+}
+trigger removeBottomTrim {
+	set params { "bottomtrim": "false" } at 0 0 0
+}
+trigger removeTopTrim {
+	set params { "toptrim": "false" } at 0 0 0
+}

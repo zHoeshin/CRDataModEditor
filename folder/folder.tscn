@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwnlcnk3krig4"]
+
+[ext_resource type="Texture2D" uid="uid://s7mn7x5e6nny" path="res://icon/plus.svg" id="1_km787"]
+[ext_resource type="Script" path="res://folder/folder.gd" id="1_yioji"]
+[ext_resource type="Texture2D" uid="uid://d33mj5lx6qdyq" path="res://icon/down.svg" id="2_vxiam"]
+
+[node name="folder" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_yioji")
+
+[node name="control" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="name" type="Button" parent="control"]
+layout_mode = 2
+icon = ExtResource("2_vxiam")
+flat = true
+
+[node name="newfilename" type="LineEdit" parent="control"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+flat = true
+
+[node name="addfile" type="Button" parent="control"]
+layout_mode = 2
+size_flags_horizontal = 10
+icon = ExtResource("1_km787")
+flat = true
+
+[node name="newfile" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="name" type="LineEdit" parent="newfile"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "New object name"
+
+[node name="fileswrapper" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="fileswrapper"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="files" type="VBoxContainer" parent="fileswrapper"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="control/name" to="." method="_on_expand_pressed"]
+[connection signal="pressed" from="control/addfile" to="." method="addFilePressed"]
+[connection signal="focus_exited" from="newfile/name" to="." method="addFileCancel"]
+[connection signal="text_change_rejected" from="newfile/name" to="." method="addFileCancel"]
+[connection signal="text_submitted" from="newfile/name" to="." method="addFileConfirm"]

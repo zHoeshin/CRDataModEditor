@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4gi2g2aiudrp"]
+
+[ext_resource type="Script" path="res://CRBELEditor/crbel_editor.gd" id="1_m60c0"]
+
+[node name="CrbelEditor" type="CodeEdit"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+gutters_draw_line_numbers = true
+auto_brace_completion_enabled = true
+auto_brace_completion_highlight_matching = true
+script = ExtResource("1_m60c0")
+
+[connection signal="text_changed" from="." to="." method="onChange"]

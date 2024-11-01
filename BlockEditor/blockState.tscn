@@ -1,0 +1,439 @@
+[gd_scene load_steps=18 format=3 uid="uid://c842g5effgckp"]
+
+[ext_resource type="PackedScene" uid="uid://cc8otxpsklx44" path="res://models/precomputed/unknown.tscn" id="1_f1dtb"]
+[ext_resource type="Script" path="res://BlockEditor/block_state.gd" id="1_j8krs"]
+[ext_resource type="Script" path="res://BlockEditor/color.gd" id="2_ioksj"]
+[ext_resource type="Texture2D" uid="uid://g5ne0n1k0o2a" path="res://icon/check.svg" id="2_y30y4"]
+[ext_resource type="Texture2D" uid="uid://ggawe2aelrni" path="res://icon/cross.svg" id="3_l1xe8"]
+[ext_resource type="PackedScene" uid="uid://ctue8i7j0rytr" path="res://models/precomputed/empty.tscn" id="3_wvxsy"]
+[ext_resource type="Texture2D" uid="uid://d33mj5lx6qdyq" path="res://icon/down.svg" id="4_0w2x3"]
+[ext_resource type="Script" path="res://BlockEditor/tags_label.gd" id="4_a2pew"]
+[ext_resource type="Texture2D" uid="uid://cr67tquet1bnw" path="res://icon/bin.svg" id="4_hnpy5"]
+[ext_resource type="Texture2D" uid="uid://4i2rapf65c4h" path="res://icon/right.svg" id="4_v6t0u"]
+[ext_resource type="PackedScene" uid="uid://cfw8sb065m1qf" path="res://Utils/DictionaryInput.tscn" id="5_clp6j"]
+[ext_resource type="Script" path="res://BlockEditor/state_generators_label.gd" id="5_kjyud"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_imps2"]
+viewport_path = NodePath("wrapper/icon/SubViewportContainer/SubViewport")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5w74u"]
+
+[sub_resource type="Environment" id="Environment_r2x3y"]
+
+[sub_resource type="Environment" id="Environment_ktbm7"]
+
+[sub_resource type="World3D" id="World3D_72n7i"]
+environment = SubResource("Environment_r2x3y")
+fallback_environment = SubResource("Environment_ktbm7")
+camera_attributes = SubResource("CameraAttributesPractical_5w74u")
+
+[node name="BlockState" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 781.0
+grow_horizontal = 2
+script = ExtResource("1_j8krs")
+
+[node name="name" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="name" type="Label" parent="name"]
+layout_mode = 2
+text = "base:debug"
+
+[node name="Label2" type="Label" parent="name"]
+layout_mode = 2
+text = "["
+
+[node name="params" type="LineEdit" parent="name"]
+layout_mode = 2
+placeholder_text = "default"
+alignment = 1
+expand_to_text_length = true
+flat = true
+
+[node name="Label3" type="Label" parent="name"]
+layout_mode = 2
+text = "]"
+
+[node name="deletebuttons" type="HBoxContainer" parent="name"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="deleteconfirm" type="Button" parent="name/deletebuttons"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+icon = ExtResource("2_y30y4")
+flat = true
+
+[node name="deletecancel" type="Button" parent="name/deletebuttons"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+icon = ExtResource("3_l1xe8")
+flat = true
+
+[node name="delete" type="Button" parent="name/deletebuttons"]
+layout_mode = 2
+size_flags_horizontal = 10
+icon = ExtResource("4_hnpy5")
+flat = true
+
+[node name="wrapper" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="icon" type="VBoxContainer" parent="wrapper"]
+custom_minimum_size = Vector2(196, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="wrapper/icon"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("ViewportTexture_imps2")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="wrapper/icon"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SubViewport" type="SubViewport" parent="wrapper/icon/SubViewportContainer"]
+own_world_3d = true
+world_3d = SubResource("World3D_72n7i")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(196, 196)
+render_target_update_mode = 4
+
+[node name="Unknown" parent="wrapper/icon/SubViewportContainer/SubViewport" instance=ExtResource("1_f1dtb")]
+
+[node name="Empty" parent="wrapper/icon/SubViewportContainer/SubViewport" instance=ExtResource("3_wvxsy")]
+
+[node name="container" type="Node3D" parent="wrapper/icon/SubViewportContainer/SubViewport/Empty"]
+
+[node name="properties" type="VBoxContainer" parent="wrapper"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="langKey" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "string"
+
+[node name="label" type="Label" parent="wrapper/properties/langKey"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Translation key"
+
+[node name="string" type="LineEdit" parent="wrapper/properties/langKey"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="modelName" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "string"
+
+[node name="label" type="Label" parent="wrapper/properties/modelName"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Model name"
+
+[node name="string" type="LineEdit" parent="wrapper/properties/modelName"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="blockEventsId" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "string"
+
+[node name="label" type="Label" parent="wrapper/properties/blockEventsId"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Block events ID"
+
+[node name="string" type="LineEdit" parent="wrapper/properties/blockEventsId"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="dropId" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "string"
+
+[node name="label" type="Label" parent="wrapper/properties/dropId"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Drop ID"
+
+[node name="string" type="LineEdit" parent="wrapper/properties/dropId"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="allowSwapping" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "boolean"
+
+[node name="label" type="Label" parent="wrapper/properties/allowSwapping"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Allow swapping"
+
+[node name="boolean" type="CheckBox" parent="wrapper/properties/allowSwapping"]
+layout_mode = 2
+button_pressed = true
+flat = true
+
+[node name="isOpaque" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "boolean"
+
+[node name="label" type="Label" parent="wrapper/properties/isOpaque"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Is opaque"
+
+[node name="boolean" type="CheckBox" parent="wrapper/properties/isOpaque"]
+layout_mode = 2
+button_pressed = true
+flat = true
+
+[node name="canRaycastForBreak" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "boolean"
+
+[node name="label" type="Label" parent="wrapper/properties/canRaycastForBreak"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Can break"
+
+[node name="boolean" type="CheckBox" parent="wrapper/properties/canRaycastForBreak"]
+layout_mode = 2
+button_pressed = true
+flat = true
+
+[node name="canRaycastForPlaceOn" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "boolean"
+
+[node name="label" type="Label" parent="wrapper/properties/canRaycastForPlaceOn"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Can place on"
+
+[node name="boolean" type="CheckBox" parent="wrapper/properties/canRaycastForPlaceOn"]
+layout_mode = 2
+button_pressed = true
+flat = true
+
+[node name="canRaycastForReplace" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "boolean"
+
+[node name="label" type="Label" parent="wrapper/properties/canRaycastForReplace"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Can replace"
+
+[node name="boolean" type="CheckBox" parent="wrapper/properties/canRaycastForReplace"]
+layout_mode = 2
+flat = true
+
+[node name="walkthrough" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "boolean"
+
+[node name="label" type="Label" parent="wrapper/properties/walkthrough"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Walkthrough"
+
+[node name="boolean" type="CheckBox" parent="wrapper/properties/walkthrough"]
+layout_mode = 2
+flat = true
+
+[node name="catalogHidden" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "boolean"
+
+[node name="label" type="Label" parent="wrapper/properties/catalogHidden"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hidden from the catalog"
+
+[node name="boolean" type="CheckBox" parent="wrapper/properties/catalogHidden"]
+layout_mode = 2
+flat = true
+
+[node name="isFluid" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "boolean"
+
+[node name="label" type="Label" parent="wrapper/properties/isFluid"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Is fluid"
+
+[node name="boolean" type="CheckBox" parent="wrapper/properties/isFluid"]
+layout_mode = 2
+flat = true
+
+[node name="lightAttenuation" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "int"
+
+[node name="label" type="Label" parent="wrapper/properties/lightAttenuation"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Light attenuation"
+
+[node name="int" type="SpinBox" parent="wrapper/properties/lightAttenuation"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 15.0
+value = 15.0
+custom_arrow_step = 1.0
+
+[node name="light" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "color"
+
+[node name="label" type="Label" parent="wrapper/properties/light"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Light color"
+
+[node name="color" type="ColorPickerButton" parent="wrapper/properties/light"]
+layout_mode = 2
+size_flags_horizontal = 3
+flat = true
+edit_alpha = false
+script = ExtResource("2_ioksj")
+
+[node name="rotXZ" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "int"
+
+[node name="label" type="Label" parent="wrapper/properties/rotXZ"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rotation (Y axis)"
+
+[node name="int" type="SpinBox" parent="wrapper/properties/rotXZ"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_arrow_step = 1.0
+
+[node name="hardness" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "float"
+
+[node name="label" type="Label" parent="wrapper/properties/hardness"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hardness"
+
+[node name="float" type="SpinBox" parent="wrapper/properties/hardness"]
+layout_mode = 2
+size_flags_horizontal = 3
+step = 0.01
+value = 1.5
+custom_arrow_step = 0.5
+
+[node name="blastResistance" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "float"
+
+[node name="label" type="Label" parent="wrapper/properties/blastResistance"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Blast resistance"
+
+[node name="float" type="SpinBox" parent="wrapper/properties/blastResistance"]
+layout_mode = 2
+size_flags_horizontal = 3
+step = 0.01
+value = 100.0
+custom_arrow_step = 1.0
+
+[node name="dropParams" type="VBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+metadata/type = "dict"
+
+[node name="labelwrapper" type="HBoxContainer" parent="wrapper/properties/dropParams"]
+layout_mode = 2
+
+[node name="name" type="Button" parent="wrapper/properties/dropParams/labelwrapper"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Drop Params"
+icon = ExtResource("4_v6t0u")
+flat = true
+
+[node name="ellipsis" type="Label" parent="wrapper/properties/dropParams/labelwrapper"]
+layout_mode = 2
+text = "{ ... }"
+
+[node name="dict" parent="wrapper/properties/dropParams" instance=ExtResource("5_clp6j")]
+visible = false
+layout_mode = 2
+
+[node name="other" type="VBoxContainer" parent="wrapper"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="tagsLabel" type="Button" parent="wrapper/other"]
+layout_mode = 2
+text = "Tags"
+icon = ExtResource("4_0w2x3")
+flat = true
+alignment = 0
+script = ExtResource("4_a2pew")
+
+[node name="tags" type="TextEdit" parent="wrapper/other"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="stateGeneratorsLabel" type="Button" parent="wrapper/other"]
+layout_mode = 2
+text = "State Generators"
+icon = ExtResource("4_0w2x3")
+flat = true
+alignment = 0
+script = ExtResource("5_kjyud")
+
+[node name="stateGenerators" type="TextEdit" parent="wrapper/other"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="text_changed" from="name/params" to="." method="changed"]
+[connection signal="text_changed" from="wrapper/properties/langKey/string" to="." method="changed"]
+[connection signal="focus_exited" from="wrapper/properties/modelName/string" to="." method="model_changed"]
+[connection signal="text_change_rejected" from="wrapper/properties/modelName/string" to="." method="model_changed"]
+[connection signal="text_changed" from="wrapper/properties/modelName/string" to="." method="model_changed"]
+[connection signal="text_changed" from="wrapper/properties/modelName/string" to="." method="changed"]
+[connection signal="text_submitted" from="wrapper/properties/modelName/string" to="." method="model_changed"]
+[connection signal="text_changed" from="wrapper/properties/blockEventsId/string" to="." method="changed"]
+[connection signal="text_changed" from="wrapper/properties/dropId/string" to="." method="changed"]
+[connection signal="pressed" from="wrapper/properties/allowSwapping/boolean" to="." method="changed"]
+[connection signal="pressed" from="wrapper/properties/isOpaque/boolean" to="." method="changed"]
+[connection signal="pressed" from="wrapper/properties/canRaycastForBreak/boolean" to="." method="changed"]
+[connection signal="pressed" from="wrapper/properties/canRaycastForPlaceOn/boolean" to="." method="changed"]
+[connection signal="pressed" from="wrapper/properties/canRaycastForReplace/boolean" to="." method="changed"]
+[connection signal="pressed" from="wrapper/properties/walkthrough/boolean" to="." method="changed"]
+[connection signal="pressed" from="wrapper/properties/catalogHidden/boolean" to="." method="changed"]
+[connection signal="pressed" from="wrapper/properties/isFluid/boolean" to="." method="changed"]
+[connection signal="changed" from="wrapper/properties/lightAttenuation/int" to="." method="changed"]
+[connection signal="color_changed" from="wrapper/properties/light/color" to="." method="changed"]
+[connection signal="color_changed" from="wrapper/properties/light/color" to="wrapper/properties/light/color" method="onChange"]
+[connection signal="changed" from="wrapper/properties/rotXZ/int" to="." method="changed"]
+[connection signal="changed" from="wrapper/properties/hardness/float" to="." method="changed"]
+[connection signal="changed" from="wrapper/properties/blastResistance/float" to="." method="changed"]
+[connection signal="pressed" from="wrapper/properties/dropParams/labelwrapper/name" to="." method="_on_dropparamslabel_pressed"]
+[connection signal="pressed" from="wrapper/other/tagsLabel" to="wrapper/other/tagsLabel" method="_on_pressed"]
+[connection signal="text_changed" from="wrapper/other/tags" to="." method="changed"]
+[connection signal="pressed" from="wrapper/other/stateGeneratorsLabel" to="wrapper/other/stateGeneratorsLabel" method="_on_pressed"]
+[connection signal="text_changed" from="wrapper/other/stateGenerators" to="." method="changed"]

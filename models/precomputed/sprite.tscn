@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkp2lncfsy1h2"]
+
+[ext_resource type="Texture2D" uid="uid://ggawe2aelrni" path="res://icon/cross.svg" id="1_y7mdv"]
+
+[node name="Sprite" type="Sprite3D"]
+centered = false
+pixel_size = 1.0
+double_sided = false
+texture_filter = 0
+texture = ExtResource("1_y7mdv")
+region_enabled = true

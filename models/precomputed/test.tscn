@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyy6n0qduoi4g"]
+
+[ext_resource type="Script" path="res://models/precomputed/character_body_3d.gd" id="1_tgr81"]
+
+[node name="Test" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_tgr81")
+
+[node name="Camera3D" type="Camera3D" parent="."]

@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://cc8otxpsklx44"]
+
+[ext_resource type="Shader" path="res://models/precomputed/unknown.gdshader" id="1_yvcgl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_12dex"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(1, 1, 1, 1)
+sky_energy_multiplier = 0.0
+ground_bottom_color = Color(1, 1, 1, 1)
+ground_horizon_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Sky" id="Sky_hr68t"]
+sky_material = SubResource("ProceduralSkyMaterial_12dex")
+
+[sub_resource type="Environment" id="Environment_c17yc"]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_hr68t")
+tonemap_mode = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q17qd"]
+render_priority = 0
+shader = ExtResource("1_yvcgl")
+
+[sub_resource type="QuadMesh" id="QuadMesh_0lgvy"]
+size = Vector2(16, 16)
+
+[node name="Unknown" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_c17yc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.380968, 0.595704, 0, 0.842452, 0.538771, -0.707107, -0.380968, 0.595704, 20, 20, 20)
+projection = 1
+size = 32.0
+
+[node name="cube" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cube"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, 8, 0)
+material_override = SubResource("ShaderMaterial_q17qd")
+gi_mode = 0
+mesh = SubResource("QuadMesh_0lgvy")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="cube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 8, 16)
+material_override = SubResource("ShaderMaterial_q17qd")
+gi_mode = 0
+mesh = SubResource("QuadMesh_0lgvy")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="cube"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 8, 0, 8)
+material_override = SubResource("ShaderMaterial_q17qd")
+gi_mode = 0
+mesh = SubResource("QuadMesh_0lgvy")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="cube"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8, 16, 8)
+material_override = SubResource("ShaderMaterial_q17qd")
+gi_mode = 0
+mesh = SubResource("QuadMesh_0lgvy")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="cube"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 8, 8)
+material_override = SubResource("ShaderMaterial_q17qd")
+gi_mode = 0
+mesh = SubResource("QuadMesh_0lgvy")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="cube"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16, 8, 8)
+material_override = SubResource("ShaderMaterial_q17qd")
+gi_mode = 0
+mesh = SubResource("QuadMesh_0lgvy")
