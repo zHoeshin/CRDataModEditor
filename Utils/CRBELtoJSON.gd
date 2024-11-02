@@ -1,6 +1,5 @@
 extends Node
 
-
 const TType = {
 	Symbol = 1,
 	Int = 2,
@@ -156,7 +155,7 @@ func convert(raw):
 			var tname = tokens[i + 1].value.strip_edges()
 			value["triggers"][tname] = []
 			if (tokens[i + 2].type != TType.Symbol) or\
-			   (tokens[i + 2].value.strip_edges() != "{"):
+				(tokens[i + 2].value.strip_edges() != "{"):
 				return "Error parsing file: expected trigger body"
 			i += 4
 			var s = i - 2

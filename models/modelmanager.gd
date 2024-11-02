@@ -78,7 +78,7 @@ func getCuboidAsMesh(cuboid, textures):
 	var bounds = cuboid["localBounds"]
 	var to  : Vector3 = Vector3(bounds[3], bounds[4], bounds[5])
 	var from: Vector3 = Vector3(bounds[0], bounds[1], bounds[2])
-	var size: Vector3 = from - to
+	var size: Vector3 = to - from
 	var c: MeshInstance3D = cuboidscene.instantiate()
 	c.position = from - size / 2
 	c.scale = size

@@ -76,7 +76,6 @@ ok_button_text = "Save"
 script = ExtResource("4_18tjm")
 
 [node name="ProjectNotSaved" type="AcceptDialog" parent="Popups"]
-auto_translate_mode = 1
 title = "Project not saved"
 initial_position = 1
 size = Vector2i(256, 100)

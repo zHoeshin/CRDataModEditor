@@ -13,8 +13,8 @@ config_version=5
 config/name="Cosmic Reach Data Mod Editor"
 config/version="1.0.0"
 run/main_scene="res://main/main.tscn"
-config/custom_user_dir_name="crdme"
 config/use_custom_user_dir=true
+config/custom_user_dir_name="crdme"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
@@ -34,6 +34,7 @@ Program="*res://main/Program.gd"
 [display]
 
 window/size/mode=2
+window/subwindows/embed_subwindows=false
 
 [file_customization]
 
