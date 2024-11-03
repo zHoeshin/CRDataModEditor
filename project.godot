@@ -34,7 +34,6 @@ Program="*res://main/Program.gd"
 [display]
 
 window/size/mode=2
-window/subwindows/embed_subwindows=false
 
 [file_customization]
 
