@@ -157,7 +157,7 @@ func getWhole():
 func setWhole(params: String, properties: Dictionary):
 	setParams(params)
 	setProperties(properties)
-	$wrapper/other/tags.text = "\n".join(properties.get("tags", ""))
+	$wrapper/other/tags.text = "\n".join(properties.get("tags", []))
 	$wrapper/other/stateGenerators.text = "\n".join(properties.get("stateGenerators", []))
 	#var modelLoadThread = Thread.new()
 	#modelLoadThread.start(loadModel.bind(properties.get("modelName")))
@@ -197,4 +197,11 @@ func model_changed(model = null):
 	var c = Node3D.new()
 	$wrapper/icon/SubViewportContainer/SubViewport/Empty.add_child(c)
 	c.name = "container"
+	c.rotation_degrees.y = $wrapper/properties/rotXZ/int.value * 90
 	loadModel(model)
+
+
+func _on_rotxz_value_changed(value):
+	var container: Node3D = $wrapper/icon/SubViewportContainer/SubViewport/Empty.get_node_or_null("container")
+	if container == null: return
+	container.rotation_degrees.y = value * 90

@@ -80,7 +80,7 @@ func getCuboidAsMesh(cuboid, textures):
 	var from: Vector3 = Vector3(bounds[0], bounds[1], bounds[2])
 	var size: Vector3 = to - from
 	var c: MeshInstance3D = cuboidscene.instantiate()
-	c.position = from - size / 2
+	c.position = to - size / 2
 	c.scale = size
 	var s: ShaderMaterial =ShaderMaterial.new()
 	s.shader = cuboidShader

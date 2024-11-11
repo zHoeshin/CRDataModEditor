@@ -320,6 +320,8 @@ text = "Rotation (Y axis)"
 [node name="int" type="SpinBox" parent="wrapper/properties/rotXZ"]
 layout_mode = 2
 size_flags_horizontal = 3
+max_value = 270.0
+step = 90.0
 custom_arrow_step = 1.0
 
 [node name="hardness" type="HBoxContainer" parent="wrapper/properties"]
@@ -413,8 +415,8 @@ size_flags_vertical = 3
 [connection signal="text_changed" from="wrapper/properties/langKey/string" to="." method="changed"]
 [connection signal="focus_exited" from="wrapper/properties/modelName/string" to="." method="model_changed"]
 [connection signal="text_change_rejected" from="wrapper/properties/modelName/string" to="." method="model_changed"]
-[connection signal="text_changed" from="wrapper/properties/modelName/string" to="." method="model_changed"]
 [connection signal="text_changed" from="wrapper/properties/modelName/string" to="." method="changed"]
+[connection signal="text_changed" from="wrapper/properties/modelName/string" to="." method="model_changed"]
 [connection signal="text_submitted" from="wrapper/properties/modelName/string" to="." method="model_changed"]
 [connection signal="text_changed" from="wrapper/properties/blockEventsId/string" to="." method="changed"]
 [connection signal="text_changed" from="wrapper/properties/dropId/string" to="." method="changed"]
@@ -430,6 +432,7 @@ size_flags_vertical = 3
 [connection signal="color_changed" from="wrapper/properties/light/color" to="." method="changed"]
 [connection signal="color_changed" from="wrapper/properties/light/color" to="wrapper/properties/light/color" method="onChange"]
 [connection signal="changed" from="wrapper/properties/rotXZ/int" to="." method="changed"]
+[connection signal="value_changed" from="wrapper/properties/rotXZ/int" to="." method="_on_rotxz_value_changed"]
 [connection signal="changed" from="wrapper/properties/hardness/float" to="." method="changed"]
 [connection signal="changed" from="wrapper/properties/blastResistance/float" to="." method="changed"]
 [connection signal="pressed" from="wrapper/properties/dropParams/labelwrapper/name" to="." method="_on_dropparamslabel_pressed"]

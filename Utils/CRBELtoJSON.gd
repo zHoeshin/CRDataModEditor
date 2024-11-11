@@ -204,7 +204,7 @@ func convert(raw):
 					return -1
 				elif JSONtoCRBEL.actionVars[id] != "":
 					var _t = alist[ai]
-					var v = alist[ai]["value"].strip_edges()
+					var v = null
 					var j = ""
 					if (_t.type == TType.Symbol) and (_t.value.strip_edges() == "{"):
 						var bc = 1
@@ -226,9 +226,11 @@ func convert(raw):
 									break
 							ai += 1
 						v = JSON.parse_string(j)
-							
-					action["parameters"][JSONtoCRBEL.actionVars[id]] = v
-					ai += 1
+					elif (_t.type == TType.ID) and not (_t.value.strip_edges() in sep):
+						v = alist[ai]["value"].strip_edges()
+					if v != null:
+						action["parameters"][JSONtoCRBEL.actionVars[id]] = v
+						ai += 1
 					
 				while ai < len(alist):
 					var sv = alist[ai].value.strip_edges()

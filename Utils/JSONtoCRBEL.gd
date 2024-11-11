@@ -41,7 +41,7 @@ const actionVars = {
 	"base:explode": "",
 	"base:grow_tree_coconut": "",
 	"base:grow_tree_poplar": "",
-	"base:item_drop": "",
+	"base:item_drop": "dropId",
 	"base:leaf_decay": "paramName",
 	"base:loot_drop": "lootId",
 	"base:play_sound_2d": "sound",
@@ -58,7 +58,10 @@ const actionVars = {
 func convert(raw):
 	var text = ""
 	var d = JSON.parse_string(raw)
-	text += "name {n}\n".format({n = d["stringId"]})
+	if d == null:
+		return "Unable to parse"
+	if d.has("stringId"):
+		text += "name {n}\n".format({n = d["stringId"]})
 	if d.has("parent"):
 		text += "inherit {p}\n".format({p = d["parent"]})
 	
@@ -78,7 +81,7 @@ func convertAction(action):
 	var params = action["parameters"]
 	
 	var at = getVec3(params, "at", "Off")
-	var from = getVec3(params, "from", "2Off")
+	var from = getVec3(params, "from", "1Off")
 	var to = getVec3(params, "to", "2Off")
 	var normals = getVec3(params, "normals", "Normal")
 	
@@ -87,7 +90,7 @@ func convertAction(action):
 	
 	var v = ""
 	if actionVars.has(id) and !actionVars[id].is_empty():
-		v = "{param}".format({param = params[actionVars[id]]})
+		v = "{param}".format({param = params.get(actionVars[id], "")})
 	
 	var witharr = []
 	for k in params.keys():
