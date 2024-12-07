@@ -148,10 +148,10 @@ func getWhole():
 	var properties = getProperties().merged(unusedProperties)
 	var tags = Array($wrapper/other/tags.text.split("\n", false)).filter(func(e): return len(e) > 0)
 	if len(tags) > 0:
-		properties.merge({"tags": tags})
-	var stateGenerators = Array($wrapper/other/stateGenerators.text.split("\n", false)).filter(func(e): print('"', e, '"'); return len(e) > 0)
+		properties.merge({"tags": tags}, true)
+	var stateGenerators = Array($wrapper/other/stateGenerators.text.split("\n", false)).filter(func(e): return len(e) > 0)
 	if len(stateGenerators) > 0:
-		properties.merge({"stateGenerators": stateGenerators})
+		properties.merge({"stateGenerators": stateGenerators}, true)
 	return [getParams(), properties]
 
 func setWhole(params: String, properties: Dictionary):
@@ -166,7 +166,7 @@ func setWhole(params: String, properties: Dictionary):
 func loadModel(path):
 	#_model = ModelManager.getModelScene(path)
 	#$wrapper/icon/SubViewportContainer/SubViewport.add_child(_model)
-	var meshes = ModelManager.getModelMeshes(path)
+	"""var meshes = ModelManager.getModelMeshes(path)
 	if meshes == null or not len(meshes):
 		$wrapper/icon/SubViewportContainer/SubViewport/Unknown.visible = true
 		$wrapper/icon/SubViewportContainer/SubViewport/Empty.visible = false
@@ -175,7 +175,9 @@ func loadModel(path):
 	$wrapper/icon/SubViewportContainer/SubViewport/Empty.visible = true
 	for m in meshes:
 		$wrapper/icon/SubViewportContainer/SubViewport/Empty/container.add_child(m.duplicate())
-
+	"""
+	$wrapper/icon/ThingPreview3d.setThing(path)
+	
 func _on_dropparamslabel_pressed():
 	toggleDictFold($wrapper/properties/dropParams)
 
@@ -189,7 +191,7 @@ func toggleDictFold(wrapper):
 
 
 func model_changed(model = null):
-	if model == null:
+	"""if model == null:
 		model = $wrapper/properties/modelName/string.text
 	if $wrapper/icon/SubViewportContainer/SubViewport/Empty/container != null:
 		$wrapper/icon/SubViewportContainer/SubViewport/Empty/container.queue_free()
@@ -198,10 +200,9 @@ func model_changed(model = null):
 	$wrapper/icon/SubViewportContainer/SubViewport/Empty.add_child(c)
 	c.name = "container"
 	c.rotation_degrees.y = $wrapper/properties/rotXZ/int.value * 90
-	loadModel(model)
+	loadModel(model)"""
+	$wrapper/icon/ThingPreview3d.setThing(model, $wrapper/properties/rotXZ/int.value)
 
 
 func _on_rotxz_value_changed(value):
-	var container: Node3D = $wrapper/icon/SubViewportContainer/SubViewport/Empty.get_node_or_null("container")
-	if container == null: return
-	container.rotation_degrees.y = value * 90
+	$wrapper/icon/ThingPreview3d.setRotation(value)

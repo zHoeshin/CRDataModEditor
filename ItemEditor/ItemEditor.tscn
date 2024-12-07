@@ -1,0 +1,172 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0sdaan33a4qq"]
+
+[ext_resource type="PackedScene" uid="uid://mdjfmuu6jlqd" path="res://TringPreviewer/ThingPreview2D.tscn" id="1_bxkht"]
+[ext_resource type="Script" path="res://ItemEditor/item_editor.gd" id="1_m30vt"]
+
+[node name="ItemEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m30vt")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="wrapper" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="id" type="HBoxContainer" parent="wrapper"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="wrapper/id"]
+layout_mode = 2
+text = " Identifier:"
+
+[node name="id" type="LineEdit" parent="wrapper/id"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="wrapper" type="HBoxContainer" parent="wrapper"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ThingPreview2D" parent="wrapper/wrapper" instance=ExtResource("1_bxkht")]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+
+[node name="properties" type="VBoxContainer" parent="wrapper/wrapper"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="texture" type="HBoxContainer" parent="wrapper/wrapper/properties"]
+layout_mode = 2
+metadata/type = "string"
+
+[node name="label" type="Label" parent="wrapper/wrapper/properties/texture"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Texture"
+
+[node name="string" type="LineEdit" parent="wrapper/wrapper/properties/texture"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="modelType" type="HBoxContainer" parent="wrapper/wrapper/properties"]
+layout_mode = 2
+metadata/type = "string"
+
+[node name="label" type="Label" parent="wrapper/wrapper/properties/modelType"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Model"
+
+[node name="string" type="LineEdit" parent="wrapper/wrapper/properties/modelType"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="select" type="OptionButton" parent="wrapper/wrapper/properties/modelType"]
+layout_mode = 2
+size_flags_horizontal = 3
+flat = true
+selected = 0
+item_count = 2
+popup/item_0/text = "3D"
+popup/item_1/text = "2D"
+popup/item_1/id = 1
+
+[node name="stackLimit" type="HBoxContainer" parent="wrapper/wrapper/properties"]
+layout_mode = 2
+metadata/type = "int"
+
+[node name="label" type="Label" parent="wrapper/wrapper/properties/stackLimit"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stack Limit"
+
+[node name="int" type="SpinBox" parent="wrapper/wrapper/properties/stackLimit"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 99999.0
+custom_arrow_step = 1.0
+
+[node name="toolSpeed" type="HBoxContainer" parent="wrapper/wrapper/properties"]
+layout_mode = 2
+metadata/type = "int"
+
+[node name="label" type="Label" parent="wrapper/wrapper/properties/toolSpeed"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tool Speed"
+
+[node name="int" type="SpinBox" parent="wrapper/wrapper/properties/toolSpeed"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 99999.0
+custom_arrow_step = 1.0
+
+[node name="durability" type="HBoxContainer" parent="wrapper/wrapper/properties"]
+layout_mode = 2
+metadata/type = "int"
+
+[node name="label" type="Label" parent="wrapper/wrapper/properties/durability"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Durability"
+
+[node name="int" type="SpinBox" parent="wrapper/wrapper/properties/durability"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 99999.0
+custom_arrow_step = 1.0
+
+[node name="fuelTicks" type="HBoxContainer" parent="wrapper/wrapper/properties"]
+layout_mode = 2
+metadata/type = "int"
+
+[node name="label" type="Label" parent="wrapper/wrapper/properties/fuelTicks"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fuel ticks"
+
+[node name="int" type="SpinBox" parent="wrapper/wrapper/properties/fuelTicks"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 99999.0
+custom_arrow_step = 1.0
+
+[node name="effectiveBreakingTags" type="VBoxContainer" parent="wrapper/wrapper/properties"]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/type = "str[]"
+
+[node name="label" type="Label" parent="wrapper/wrapper/properties/effectiveBreakingTags"]
+layout_mode = 2
+text = "Effective Breaking Tags:"
+
+[node name="str[]" type="TextEdit" parent="wrapper/wrapper/properties/effectiveBreakingTags"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="text_changed" from="wrapper/id/id" to="." method="onChange"]
+[connection signal="text_changed" from="wrapper/wrapper/properties/texture/string" to="." method="setTexture"]
+[connection signal="text_changed" from="wrapper/wrapper/properties/texture/string" to="." method="onChange"]
+[connection signal="item_selected" from="wrapper/wrapper/properties/modelType/select" to="." method="modelTypeChanged"]
+[connection signal="value_changed" from="wrapper/wrapper/properties/stackLimit/int" to="." method="onChange"]
+[connection signal="value_changed" from="wrapper/wrapper/properties/toolSpeed/int" to="." method="onChange"]
+[connection signal="value_changed" from="wrapper/wrapper/properties/durability/int" to="." method="onChange"]
+[connection signal="value_changed" from="wrapper/wrapper/properties/fuelTicks/int" to="." method="onChange"]
+[connection signal="text_changed" from="wrapper/wrapper/properties/effectiveBreakingTags/str[]" to="." method="onChange"]

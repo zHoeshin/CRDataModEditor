@@ -8,6 +8,7 @@ func getTexture(path, fresh = false):
 	if textures.has(path) and not fresh: return textures[path]
 	var image = Image.new()
 	var _path = Program.getAssetPath(path)
+	print(_path)
 	var err = image.load(_path)
 	if err != OK:
 		prints("texture", path, "at", _path, "not found")

@@ -86,6 +86,10 @@ func getCuboidAsMesh(cuboid, textures):
 	s.shader = cuboidShader
 	c.material_override = s
 	var setAllTextures = textures.has("all")
+	"""for facename in ["NegX", "NegY", "NegZ", "PosX", "PosY", "PosZ"]:
+		s.set_shader_parameter(facename + "Texture", emptysprite.duplicate())
+		s.set_shader_parameter(facename + "UVstart", Vector2.ZERO)
+		s.set_shader_parameter(facename + "UVsize", Vector2.ONE)"""
 	for facename in cuboid["faces"].keys():
 		var face = cuboid["faces"][facename]
 		var fn = facename.substr(5, 4)
@@ -101,4 +105,5 @@ func getCuboidAsMesh(cuboid, textures):
 		s.set_shader_parameter(fn + "Texture", texture.duplicate())
 		s.set_shader_parameter(fn + "UVstart", uvstart / tsize)
 		s.set_shader_parameter(fn + "UVsize", uvsize / tsize)
+		s.set_shader_parameter(fn + "Enabled", 1.0)
 	return c

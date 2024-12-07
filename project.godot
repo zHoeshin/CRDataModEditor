@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Cosmic Reach Data Mod Editor"
-config/version="2.0.2"
+config/version="2.1.0"
 run/main_scene="res://main/main.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="crdme"
@@ -34,10 +34,15 @@ Program="*res://main/Program.gd"
 [display]
 
 window/size/mode=2
+window/subwindows/embed_subwindows=false
 
 [file_customization]
 
 folder_colors={
+"res://BlockEditor/": "green",
+"res://CRBELEditor/": "green",
+"res://ItemEditor/": "green",
+"res://TringPreviewer/": "orange",
 "res://Utils/": "gray",
 "res://icon/": "gray",
 "res://main/": "red",

@@ -16,7 +16,15 @@ var folders = {
 					"res://CRBELEditor/CRBELEditor.tscn",
 					"Block Event",
 					false
-				]
+				],
+	"items": [
+					"items/",
+					"items",
+					[".json"],
+					"res://ItemEditor/ItemEditor.tscn",
+					"Item",
+					false
+				],
 }
 
 var commonDir
@@ -25,7 +33,7 @@ var dir
 var userDefinedDefaultAssetsDir = "user://defaultAssets/"
 var defaultAssetsDir = "res://defaultAssets/"
 
-func getAssetPath(path: String):
+func getAssetPath(path: String, tryBase = true):
 	path = path.replace(":", "/")
 	if FileAccess.file_exists(commonDir + path):
 		return commonDir + path
@@ -33,7 +41,8 @@ func getAssetPath(path: String):
 		return userDefinedDefaultAssetsDir + path
 	if FileAccess.file_exists(defaultAssetsDir + path):
 		return defaultAssetsDir + path
-	return ""
+	if tryBase: return getAssetPath("base:" + path, false)
+	else: return ""
 	
 
 func setDirs(commonDir: String, dir: String):

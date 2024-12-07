@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c842g5effgckp"]
+[gd_scene load_steps=16 format=3 uid="uid://c842g5effgckp"]
 
 [ext_resource type="PackedScene" uid="uid://cc8otxpsklx44" path="res://models/precomputed/unknown.tscn" id="1_f1dtb"]
 [ext_resource type="Script" path="res://BlockEditor/block_state.gd" id="1_j8krs"]
@@ -10,22 +10,13 @@
 [ext_resource type="Script" path="res://BlockEditor/tags_label.gd" id="4_a2pew"]
 [ext_resource type="Texture2D" uid="uid://cr67tquet1bnw" path="res://icon/bin.svg" id="4_hnpy5"]
 [ext_resource type="Texture2D" uid="uid://4i2rapf65c4h" path="res://icon/right.svg" id="4_v6t0u"]
+[ext_resource type="World3D" uid="uid://buwehi4ycvpog" path="res://BlockEditor/world.tres" id="5_6lflp"]
 [ext_resource type="PackedScene" uid="uid://cfw8sb065m1qf" path="res://Utils/DictionaryInput.tscn" id="5_clp6j"]
 [ext_resource type="Script" path="res://BlockEditor/state_generators_label.gd" id="5_kjyud"]
+[ext_resource type="PackedScene" uid="uid://kr2ssaxx2is2" path="res://TringPreviewer/ThingPreview3D.tscn" id="5_qvhg0"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_imps2"]
 viewport_path = NodePath("wrapper/icon/SubViewportContainer/SubViewport")
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5w74u"]
-
-[sub_resource type="Environment" id="Environment_r2x3y"]
-
-[sub_resource type="Environment" id="Environment_ktbm7"]
-
-[sub_resource type="World3D" id="World3D_72n7i"]
-environment = SubResource("Environment_r2x3y")
-fallback_environment = SubResource("Environment_ktbm7")
-camera_attributes = SubResource("CameraAttributesPractical_5w74u")
 
 [node name="BlockState" type="VBoxContainer"]
 anchors_preset = 10
@@ -94,17 +85,21 @@ layout_mode = 2
 size_flags_vertical = 3
 texture = SubResource("ViewportTexture_imps2")
 
+[node name="ThingPreview3d" parent="wrapper/icon" instance=ExtResource("5_qvhg0")]
+layout_mode = 2
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="wrapper/icon"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="SubViewport" type="SubViewport" parent="wrapper/icon/SubViewportContainer"]
 own_world_3d = true
-world_3d = SubResource("World3D_72n7i")
+world_3d = ExtResource("5_6lflp")
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(196, 196)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Unknown" parent="wrapper/icon/SubViewportContainer/SubViewport" instance=ExtResource("1_f1dtb")]
 

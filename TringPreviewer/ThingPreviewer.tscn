@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://cimwo3im2rs4u"]
+
+[ext_resource type="Script" path="res://TringPreviewer/ThingPreviewerController.gd" id="1_7xn1q"]
+
+[node name="ItemPreviewer" type="Window"]
+title = "Pick a thing..."
+initial_position = 4
+size = Vector2i(512, 256)
+exclusive = true
+popup_window = true
+script = ExtResource("1_7xn1q")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="things" type="FlowContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical = true
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

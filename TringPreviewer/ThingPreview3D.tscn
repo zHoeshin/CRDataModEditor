@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://kr2ssaxx2is2"]
+
+[ext_resource type="Script" path="res://TringPreviewer/thing_preview_3d.gd" id="1_bmflq"]
+[ext_resource type="PackedScene" uid="uid://cc8otxpsklx44" path="res://models/precomputed/unknown.tscn" id="2_51tyh"]
+[ext_resource type="PackedScene" uid="uid://ctue8i7j0rytr" path="res://models/precomputed/empty.tscn" id="3_gywhj"]
+
+[node name="ThingPreview3d" type="SubViewportContainer"]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bmflq")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(192, 192)
+render_target_update_mode = 4
+
+[node name="Unknown" parent="SubViewport" instance=ExtResource("2_51tyh")]
+
+[node name="Model" parent="SubViewport" instance=ExtResource("3_gywhj")]
+
+[node name="container" type="Node3D" parent="SubViewport/Model"]
