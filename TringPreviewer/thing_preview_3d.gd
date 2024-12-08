@@ -2,9 +2,9 @@ extends SubViewportContainer
 
 func setThing(model: String, rotation: int = 0):
 	if model == null: return
-	if $SubViewport/Empty/container != null:
-		$SubViewport/Empty/container.queue_free()
-		await $SubViewport/Empty/container.tree_exited
+	if $SubViewport/Model/container != null:
+		$SubViewport/Model/container.queue_free()
+		await $SubViewport/Model/container.tree_exited
 	var c = Node3D.new()
 	$SubViewport/Model.add_child(c)
 	c.name = "container"

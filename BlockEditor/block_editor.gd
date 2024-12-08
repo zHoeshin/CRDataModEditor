@@ -12,7 +12,7 @@ func getContents(filetype: String):
 	return JSON.stringify({
 		"stringId": $propertiesWrapper/properties/commonInfo/name/value.text,
 		"blockStates": getBlockstates()
-	}.merged(unusedFields), "    ")
+	}.merged(unusedFields), "    ", false)
 	
 func getBlockstates():
 	var blockstates = {}

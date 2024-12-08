@@ -287,4 +287,4 @@ func convert(raw):
 			value["triggers"][tname] = actions
 			i += 1
 		i += 1
-	return JSON.stringify(value, "    ")
+	return JSON.stringify(value, "    ", false)

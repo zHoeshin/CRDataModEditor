@@ -87,7 +87,10 @@ func getProperty(property):
 	return null
 
 func getContents(filetype: String):
-	return JSON.stringify(getProperties())
+	return JSON.stringify({
+		"id": $wrapper/id/id.text,
+		"itemProperties": getProperties(),
+	}, "    ", false)
 	
 func setContents(content: String, filetype: String):
 	if filetype != ".json": return

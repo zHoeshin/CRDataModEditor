@@ -77,6 +77,7 @@ text = "Model"
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+text = "base:item3D"
 
 [node name="select" type="OptionButton" parent="wrapper/wrapper/properties/modelType"]
 layout_mode = 2
@@ -101,6 +102,7 @@ text = "Stack Limit"
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 99999.0
+value = 1000.0
 custom_arrow_step = 1.0
 
 [node name="toolSpeed" type="HBoxContainer" parent="wrapper/wrapper/properties"]
@@ -116,6 +118,7 @@ text = "Tool Speed"
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 99999.0
+value = 1.0
 custom_arrow_step = 1.0
 
 [node name="durability" type="HBoxContainer" parent="wrapper/wrapper/properties"]
@@ -155,7 +158,7 @@ metadata/type = "str[]"
 
 [node name="label" type="Label" parent="wrapper/wrapper/properties/effectiveBreakingTags"]
 layout_mode = 2
-text = "Effective Breaking Tags:"
+text = "Effective Breaking Tags (separated by newline)"
 
 [node name="str[]" type="TextEdit" parent="wrapper/wrapper/properties/effectiveBreakingTags"]
 layout_mode = 2
