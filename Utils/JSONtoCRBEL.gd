@@ -98,7 +98,7 @@ func convertAction(action):
 		if actionVars.has(id) and !actionVars[id].is_empty():
 			if actionVars[id] == k:
 				continue
-		witharr.append("{n} {v}".format({n = k, v = params[k]}))
+		witharr.append("{n} {v}".format({n = k, v = arrtorange(params[k])}))
 	
 	var r1 = " ".join([actidtostr[id], v, at, from, to, normals].filter(func(e): return !e.is_empty()))
 	var r2 = ", ".join(witharr)
@@ -114,3 +114,7 @@ func getVec3(params, str = "at", suf = "Off"):
 			z = params["z" + suf],
 			str = str
 		})
+
+func arrtorange(a):
+	if typeof(a) != TYPE_ARRAY: return a
+	return "{l}..{h}".format({"l": a[0], "h": a[1]})

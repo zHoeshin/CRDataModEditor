@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bna1noa74wxtq"
 path.s3tc="res://.godot/imported/pencil.svg-e200554ea3065933d78d46e52748fe9e.s3tc.ctex"
+path.etc2="res://.godot/imported/pencil.svg-e200554ea3065933d78d46e52748fe9e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://icon/pencil.svg"
-dest_files=["res://.godot/imported/pencil.svg-e200554ea3065933d78d46e52748fe9e.s3tc.ctex"]
+dest_files=["res://.godot/imported/pencil.svg-e200554ea3065933d78d46e52748fe9e.s3tc.ctex", "res://.godot/imported/pencil.svg-e200554ea3065933d78d46e52748fe9e.etc2.ctex"]
 
 [params]
 

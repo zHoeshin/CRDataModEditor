@@ -87,8 +87,17 @@ func getProperty(property):
 	return null
 
 func getContents(filetype: String):
+	var id = $wrapper/id/id.text
+	
+	ThingPreviewer.removeGroup(id)
+	ThingPreviewer.addThing(
+		id, "",
+		$wrapper/wrapper/properties/texture/string.text,
+		false, true
+	)
+	
 	return JSON.stringify({
-		"id": $wrapper/id/id.text,
+		"id": id,
 		"itemProperties": getProperties(),
 	}, "    ", false)
 	

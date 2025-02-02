@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds8gbeexaucn5"]
+
+[ext_resource type="Script" path="res://CraftingRecipeEditor/crafting_recipe_editor.gd" id="1_xcyoo"]
+[ext_resource type="Texture2D" uid="uid://s7mn7x5e6nny" path="res://icon/plus.svg" id="3_d3l28"]
+
+[node name="CraftingRecipeEditor" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xcyoo")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="wrapper" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="recipes" type="VBoxContainer" parent="ScrollContainer/wrapper"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 32
+
+[node name="add" type="Button" parent="ScrollContainer/wrapper"]
+texture_filter = 1
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+icon = ExtResource("3_d3l28")
+expand_icon = true
+
+[connection signal="pressed" from="ScrollContainer/wrapper/add" to="." method="newrecipe"]

@@ -8,3 +8,8 @@ func trimSuffixes(str: String, suffixes: Array, returnSuffix = false):
 			return s
 	if returnSuffix: return [str, null]
 	return str
+
+func regex(string):
+	var r = RegEx.new()
+	r.compile(string)
+	return r

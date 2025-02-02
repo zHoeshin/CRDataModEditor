@@ -14,6 +14,7 @@ const TType = {
 	NewLine = 10,
 	Comment = 11,
 	Dict = 12,
+	String = 13,
 }
 
 const colors = {
@@ -28,7 +29,8 @@ const colors = {
 	TType.Sep: {"color": Color(0.84, 0.151, 0.289)},
 	TType.NO: {"color": Color.WHITE},
 	TType.Comment: {"color": Color(0.32, 0.32, 0.32)},
-	TType.Dict: {"color": Color(0.902, 0.677, 0)}
+	TType.Dict: {"color": Color(0.902, 0.677, 0)},
+	TType.String: {"color": Color(0.855, 0.98, 0.38)},
 }
 
 var keywords: Array = ["name", "inherit", "trigger"]
@@ -59,8 +61,9 @@ var whitespaceA: RegEx = RegEx.new()
 var whitespaceP: RegEx = RegEx.new()
 var digits: String = "0123456789"
 var whitespace: String = " \t"
-var comments: String = "#;"
-const symbols = "{},"
+const comments: String = "#;"
+const symbols: String = "[]:{},"
+const quotes: String = "\"'"
 
 func tokenize(r: String, removeComments = true, _singleunitdict = false):
 	if len(r) <= 0: return []
@@ -76,7 +79,7 @@ func tokenize(r: String, removeComments = true, _singleunitdict = false):
 		elif r[i] in symbols:
 			tokens.append({value = r[i], pos = i, type = TType.Symbol})
 			i += 1; continue
-		elif r[i] in digits or r[i] in "+-":
+		elif r[i] in digits or r[i] in "+-.":
 			var s = i
 			var v = r[i]
 			i += 1
@@ -95,6 +98,20 @@ func tokenize(r: String, removeComments = true, _singleunitdict = false):
 			i -= 1
 			if !removeComments:
 				tokens.append({value = v, pos = s, type = TType.Comment})
+		elif r[i] in quotes:
+			var q = r[i]
+			var s = i
+			i += 1
+			var v = ""
+			while i < len(r):
+				if r[i] == q: break
+				if r[i] == "\\":
+					if i + 1 < len(r):
+						i += 1
+					else: return []
+				v += r[i]
+				i += 1
+			tokens.append({value = v, pos = s, type = TType.String})
 		else:
 			var s = i
 			var v = ""
@@ -107,17 +124,17 @@ func tokenize(r: String, removeComments = true, _singleunitdict = false):
 				if r[i] == "\n":
 					i += 1
 					break
-				if r[i] in symbols:
+				if r[i] == "[": bc += 1
+				elif r[i] == "]": bc -= 1
+				elif r[i] == "{": cbc += 1
+				elif r[i] == "}": cbc -= 1
+				elif r[i] in symbols:
 					if (r[i] == ",") and (bc <= 0) and (cbc <= 0):
 						i += 1
 						break
-					elif not r[i] in ",":
+					elif not r[i] in ",:":
 						i += 1
 						break
-				if r[i] == "[": bc += 1
-				if r[i] == "]": bc -= 1
-				if r[i] == "{": cbc += 1
-				if r[i] == "}": cbc -= 1
 				v += r[i]
 				i += 1
 			i -= 1
@@ -215,7 +232,10 @@ func convert(raw):
 							var _value = nt["value"].strip_edges()
 							#var needq = _value[0] != '"' or _value[-1] != '"'
 							#if (nt["type"] in [TType.ID, TType.NO]) and needq: j += '"'
-							j += _value
+							if nt["type"] == TType.Symbol:
+								j += _value
+							else:
+								j += '"' + _value + '"'
 							#if (nt["type"] in [TType.ID, TType.NO]) and needq: j += '"'
 							if nt["type"] == TType.Symbol:
 								if nt["value"].strip_edges() == "{":
@@ -225,6 +245,7 @@ func convert(raw):
 								if bc == 0:
 									break
 							ai += 1
+						#print(j)
 						v = JSON.parse_string(j)
 					elif (_t.type == TType.ID) and not (_t.value.strip_edges() in sep):
 						v = alist[ai]["value"].strip_edges()
@@ -239,7 +260,10 @@ func convert(raw):
 							ai += 1
 							var with = {}
 							while ai + 1 < len(alist):
-								with[alist[ai]["value"].strip_edges()] = alist[ai + 1]["value"].strip_edges()
+								var v = alist[ai + 1]
+								if v["type"] == TType.Int and v["value"].strip_edges().find(".."):
+									v = v["value"].split("..")
+								with[alist[ai]["value"].strip_edges()] = v
 								ai += 2
 								if ai >= len(alist): break
 								if (alist[ai]["value"].strip_edges() == ",") and (alist[ai]["type"] == TType.Symbol):

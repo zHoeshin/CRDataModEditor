@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ctue8i7j0rytr" path="res://models/precomputed/empty.tscn" id="3_gywhj"]
 
 [node name="ThingPreview3d" type="SubViewportContainer"]
+process_mode = 3
 custom_minimum_size = Vector2(40, 40)
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +15,8 @@ grow_vertical = 2
 script = ExtResource("1_bmflq")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+process_mode = 3
+physics_interpolation_mode = 2
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false

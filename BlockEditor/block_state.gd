@@ -21,6 +21,7 @@ const defaults = {
 	"rotXZ" = 0,
 	"hardness" = 1.5,
 	"blastResistance" = 100,
+	"friction" = 1,
 	"dropParams" = {},
 }
 var unusedProperties = {}
@@ -201,8 +202,20 @@ func model_changed(model = null):
 	c.name = "container"
 	c.rotation_degrees.y = $wrapper/properties/rotXZ/int.value * 90
 	loadModel(model)"""
+	if model == null: return
 	$wrapper/icon/ThingPreview3d.setThing(model, $wrapper/properties/rotXZ/int.value)
 
 
 func _on_rotxz_value_changed(value):
 	$wrapper/icon/ThingPreview3d.setRotation(value)
+
+func selectModel():
+	var picker: FileDialog = $wrapper/properties/modelName/selectModel
+	picker.current_dir = Program.commonDir + "models/blocks/"
+	picker.visible = true
+
+func modelSelected(path: String):
+	var model = Program.filePathToAssetPath(path)
+	$wrapper/properties/modelName/string.text = model
+	loadModel(model)
+	changed()

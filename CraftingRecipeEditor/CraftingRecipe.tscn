@@ -1,0 +1,273 @@
+[gd_scene load_steps=7 format=3 uid="uid://p03s42ycsi5k"]
+
+[ext_resource type="Script" path="res://CraftingRecipeEditor/crafting_recipe.gd" id="1_2xv6u"]
+[ext_resource type="Theme" uid="uid://rpwsxicxmmwh" path="res://themes/button_border.tres" id="1_88uu5"]
+[ext_resource type="Texture2D" uid="uid://4i2rapf65c4h" path="res://icon/right.svg" id="2_nnl2i"]
+[ext_resource type="Script" path="res://CraftingRecipeEditor/recipeingredientcell.gd" id="3_jlu2h"]
+[ext_resource type="Texture2D" uid="uid://cr67tquet1bnw" path="res://icon/bin.svg" id="4_lch0j"]
+[ext_resource type="PackedScene" uid="uid://mdjfmuu6jlqd" path="res://TringPreviewer/ThingPreview2D.tscn" id="4_oqpeg"]
+
+[node name="CraftingRecipe" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2xv6u")
+
+[node name="wrapper" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="recipe" type="GridContainer" parent="wrapper"]
+layout_mode = 2
+columns = 3
+
+[node name="1" type="Button" parent="wrapper/recipe"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme = ExtResource("1_88uu5")
+script = ExtResource("3_jlu2h")
+
+[node name="_" parent="wrapper/recipe/1" instance=ExtResource("4_oqpeg")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+offset_left = -12.0
+offset_top = -12.0
+offset_right = -12.0
+offset_bottom = -12.0
+mouse_filter = 1
+
+[node name="2" type="Button" parent="wrapper/recipe"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme = ExtResource("1_88uu5")
+script = ExtResource("3_jlu2h")
+
+[node name="_" parent="wrapper/recipe/2" instance=ExtResource("4_oqpeg")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+offset_left = -12.0
+offset_top = -12.0
+offset_right = -12.0
+offset_bottom = -12.0
+mouse_filter = 1
+
+[node name="3" type="Button" parent="wrapper/recipe"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme = ExtResource("1_88uu5")
+script = ExtResource("3_jlu2h")
+
+[node name="_" parent="wrapper/recipe/3" instance=ExtResource("4_oqpeg")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 36.0
+offset_bottom = 36.0
+mouse_filter = 1
+
+[node name="4" type="Button" parent="wrapper/recipe"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme = ExtResource("1_88uu5")
+script = ExtResource("3_jlu2h")
+
+[node name="_" parent="wrapper/recipe/4" instance=ExtResource("4_oqpeg")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+offset_left = -12.0
+offset_top = -12.0
+offset_right = -12.0
+offset_bottom = -12.0
+mouse_filter = 1
+
+[node name="5" type="Button" parent="wrapper/recipe"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme = ExtResource("1_88uu5")
+script = ExtResource("3_jlu2h")
+
+[node name="_" parent="wrapper/recipe/5" instance=ExtResource("4_oqpeg")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+offset_left = -12.0
+offset_top = -12.0
+offset_right = -12.0
+offset_bottom = -12.0
+mouse_filter = 1
+
+[node name="6" type="Button" parent="wrapper/recipe"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme = ExtResource("1_88uu5")
+script = ExtResource("3_jlu2h")
+
+[node name="_" parent="wrapper/recipe/6" instance=ExtResource("4_oqpeg")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+offset_left = -12.0
+offset_top = -12.0
+offset_right = -12.0
+offset_bottom = -12.0
+mouse_filter = 1
+
+[node name="7" type="Button" parent="wrapper/recipe"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme = ExtResource("1_88uu5")
+script = ExtResource("3_jlu2h")
+
+[node name="_" parent="wrapper/recipe/7" instance=ExtResource("4_oqpeg")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+offset_left = -12.0
+offset_top = -12.0
+offset_right = -12.0
+offset_bottom = -12.0
+mouse_filter = 1
+
+[node name="8" type="Button" parent="wrapper/recipe"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme = ExtResource("1_88uu5")
+script = ExtResource("3_jlu2h")
+
+[node name="_" parent="wrapper/recipe/8" instance=ExtResource("4_oqpeg")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+offset_left = -12.0
+offset_top = -12.0
+offset_right = -12.0
+offset_bottom = -12.0
+mouse_filter = 1
+
+[node name="9" type="Button" parent="wrapper/recipe"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme = ExtResource("1_88uu5")
+script = ExtResource("3_jlu2h")
+
+[node name="_" parent="wrapper/recipe/9" instance=ExtResource("4_oqpeg")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+offset_left = -12.0
+offset_top = -12.0
+offset_right = -12.0
+offset_bottom = -12.0
+mouse_filter = 1
+
+[node name="a" type="TextureRect" parent="wrapper"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_nnl2i")
+expand_mode = 2
+
+[node name="r" type="Control" parent="wrapper"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+
+[node name="r" type="Button" parent="wrapper/r"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -24.0
+offset_right = 48.0
+offset_bottom = 24.0
+grow_vertical = 2
+size_flags_vertical = 4
+theme = ExtResource("1_88uu5")
+script = ExtResource("3_jlu2h")
+
+[node name="_" parent="wrapper/r/r" instance=ExtResource("4_oqpeg")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+offset_left = -12.0
+offset_top = -12.0
+offset_right = -12.0
+offset_bottom = -12.0
+mouse_filter = 1
+
+[node name="properties" type="VBoxContainer" parent="wrapper"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="shapeless" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="wrapper/properties/shapeless"]
+layout_mode = 2
+text = "Shapeless?"
+
+[node name="bool" type="CheckBox" parent="wrapper/properties/shapeless"]
+layout_mode = 2
+text = "   "
+flat = true
+
+[node name="crop" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="wrapper/properties/crop"]
+layout_mode = 2
+text = "Crop empty cells?"
+
+[node name="bool" type="CheckBox" parent="wrapper/properties/crop"]
+layout_mode = 2
+button_pressed = true
+text = "   "
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="wrapper/properties"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="wrapper/properties/HBoxContainer"]
+layout_mode = 2
+text = "Output amount"
+
+[node name="int" type="SpinBox" parent="wrapper/properties/HBoxContainer"]
+layout_mode = 2
+max_value = 99999.0
+
+[node name="condition" type="HBoxContainer" parent="wrapper/properties"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="wrapper/properties/condition"]
+layout_mode = 2
+text = "Tag condition: "
+
+[node name="expr" type="LineEdit" parent="wrapper/properties/condition"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+expand_to_text_length = true
+
+[node name="Button" type="Button" parent="wrapper/properties"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+icon = ExtResource("4_lch0j")
+expand_icon = true
+
+[connection signal="focus_exited" from="wrapper/recipe/1" to="wrapper/recipe/1" method="_on_focus_exited"]
+[connection signal="focus_exited" from="wrapper/recipe/2" to="wrapper/recipe/2" method="_on_focus_exited"]
+[connection signal="focus_exited" from="wrapper/recipe/3" to="wrapper/recipe/3" method="_on_focus_exited"]
+[connection signal="focus_exited" from="wrapper/recipe/4" to="wrapper/recipe/4" method="_on_focus_exited"]
+[connection signal="focus_exited" from="wrapper/recipe/5" to="wrapper/recipe/5" method="_on_focus_exited"]
+[connection signal="focus_exited" from="wrapper/recipe/6" to="wrapper/recipe/6" method="_on_focus_exited"]
+[connection signal="focus_exited" from="wrapper/recipe/7" to="wrapper/recipe/7" method="_on_focus_exited"]
+[connection signal="focus_exited" from="wrapper/recipe/8" to="wrapper/recipe/8" method="_on_focus_exited"]
+[connection signal="focus_exited" from="wrapper/recipe/9" to="wrapper/recipe/9" method="_on_focus_exited"]
+[connection signal="focus_exited" from="wrapper/r/r" to="wrapper/r/r" method="_on_focus_exited"]
+[connection signal="toggled" from="wrapper/properties/shapeless/bool" to="." method="shapeless_toggled"]
+[connection signal="text_changed" from="wrapper/properties/condition/expr" to="." method="conditionChanged"]
+[connection signal="pressed" from="wrapper/properties/Button" to="." method="delete"]

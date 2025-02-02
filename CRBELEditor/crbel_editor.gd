@@ -11,7 +11,8 @@ func _ready():
 	syntax_highlighter.set_script(shscript)
 
 func getContents(filetype: String):
-	if filetype == ".json": return CRBELtoJSON.convert(text)
+	#CRBEL.parse(text)
+	if filetype == ".json": return JSON.stringify(CRBEL.parse(text), "    ", false)
 	return text
 
 func setContents(content: String, filetype: String):

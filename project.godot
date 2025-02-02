@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Cosmic Reach Data Mod Editor"
-config/version="2.1.2"
+config/version="3.0.0"
 run/main_scene="res://main/main.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="crdme"
@@ -30,6 +30,9 @@ StringUtils="*res://Utils/StringUtils.gd"
 ModelManager="*res://models/modelmanager.gd"
 TextureManager="*res://textures/texturemanager.gd"
 Program="*res://main/Program.gd"
+ThingPreviewer="*res://TringPreviewer/ThingPreviewer.tscn"
+CRBEL="*res://CRBELEditor/crbel.gd"
+PredicateProcesser="*res://Utils/PredicateProcesser.gd"
 
 [display]
 
@@ -41,6 +44,7 @@ window/subwindows/embed_subwindows=false
 folder_colors={
 "res://BlockEditor/": "green",
 "res://CRBELEditor/": "green",
+"res://CraftingRecipeEditor/": "green",
 "res://ItemEditor/": "green",
 "res://TringPreviewer/": "orange",
 "res://Utils/": "gray",
@@ -73,3 +77,4 @@ ui_close={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

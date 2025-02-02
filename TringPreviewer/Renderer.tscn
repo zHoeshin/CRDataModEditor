@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6ux3sddskw2t"]
+
+[ext_resource type="PackedScene" uid="uid://cc8otxpsklx44" path="res://models/precomputed/unknown.tscn" id="1_dv73f"]
+[ext_resource type="Script" path="res://TringPreviewer/renderer.gd" id="1_i80kf"]
+[ext_resource type="PackedScene" uid="uid://ctue8i7j0rytr" path="res://models/precomputed/empty.tscn" id="2_a3xkl"]
+
+[node name="Renderer" type="SubViewport"]
+process_mode = 3
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+script = ExtResource("1_i80kf")
+
+[node name="Unknown" parent="." instance=ExtResource("1_dv73f")]
+
+[node name="Model" parent="." instance=ExtResource("2_a3xkl")]
+
+[node name="container" type="Node3D" parent="Model"]

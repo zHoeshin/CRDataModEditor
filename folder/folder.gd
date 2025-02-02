@@ -55,7 +55,7 @@ func _init_(globalPath: String,
 
 func loadDir():
 	var d = DirAccess.open(path)
-	filesAdded(d.get_files())
+	if d != null: filesAdded(d.get_files())
 
 func filesAdded(files: Array[String]):
 	for f in files:
@@ -136,8 +136,10 @@ func addFileConfirm(filename):
 		if FileAccess.file_exists(path + filename + type):
 			return
 	for type in fileTypes:
+		DirAccess.make_dir_recursive_absolute(path)
 		var dummy = FileAccess.open(path + filename + type, FileAccess.WRITE)
-		dummy.close()
+		if dummy != null:
+			dummy.close()
 	addFileCleanup()
 	sortChildren()
 

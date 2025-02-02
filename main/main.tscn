@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch0pcrj04sh1x"]
+[gd_scene load_steps=6 format=3 uid="uid://ch0pcrj04sh1x"]
 
 [ext_resource type="Script" path="res://main/menubar_project.gd" id="1_djgb1"]
 [ext_resource type="Script" path="res://main/main.gd" id="1_dmab8"]
 [ext_resource type="Theme" uid="uid://cl13gt6fcleb5" path="res://themes/dark.tres" id="3_pcbed"]
 [ext_resource type="Script" path="res://main/file_not_saved.gd" id="4_18tjm"]
 [ext_resource type="Script" path="res://main/project_not_saved.gd" id="4_fy40g"]
-[ext_resource type="PackedScene" uid="uid://cimwo3im2rs4u" path="res://TringPreviewer/ThingPreviewer.tscn" id="6_lkhli"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -63,7 +62,7 @@ offset_bottom = 40.0
 
 [node name="OpenFileOrFolder" type="FileDialog" parent="Popups"]
 title = "Open a Directory"
-size = Vector2i(314, 175)
+size = Vector2i(342, 175)
 ok_button_text = "Select Current Folder"
 file_mode = 2
 access = 2
@@ -108,9 +107,6 @@ visible = false
 layout_mode = 2
 
 [node name="Misc" type="PopupMenu" parent="Menu/Misc"]
-
-[node name="Window" parent="." instance=ExtResource("6_lkhli")]
-visible = false
 
 [connection signal="tab_button_pressed" from="Contents/FilesInEdit" to="." method="fileClosed"]
 [connection signal="dir_selected" from="Popups/OpenFileOrFolder" to="." method="openProjectFromFolder"]

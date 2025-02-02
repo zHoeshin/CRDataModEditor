@@ -9,9 +9,18 @@ signal changed(file, sender)
 var unusedFields = {}
 
 func getContents(filetype: String):
+	var blockstates = getBlockstates()
+	var id = $propertiesWrapper/properties/commonInfo/name/value.text
+	
+	ThingPreviewer.removeGroup(id)
+	for blockstate in blockstates.keys():
+		var model = blockstates[blockstate].get("modelName", "")
+		if !blockstates[blockstate].get("catalogHidden", false):
+			ThingPreviewer.addThing(id, blockstate, model, true, false)
+	
 	return JSON.stringify({
-		"stringId": $propertiesWrapper/properties/commonInfo/name/value.text,
-		"blockStates": getBlockstates()
+		"stringId": id,
+		"blockStates": blockstates
 	}.merged(unusedFields), "    ", false)
 	
 func getBlockstates():

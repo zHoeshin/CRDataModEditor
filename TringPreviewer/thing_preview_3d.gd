@@ -10,7 +10,7 @@ func setThing(model: String, rotation: int = 0):
 	c.name = "container"
 	c.rotation_degrees.y = rotation
 	var meshes = ModelManager.getModelMeshes(model)
-	if meshes == null or not len(meshes):
+	if meshes == null:
 		$SubViewport/Unknown.visible = true
 		$SubViewport/Model.visible = false
 		return
@@ -30,3 +30,15 @@ func setRotation(rotation: int):
 
 func setSize(size: Vector2):
 	$SubViewport.size = size
+
+func setScaling(scale):
+	stretch_shrink = true
+	$SubViewport.size /= scale
+	stretch = scale
+
+func setRenderToThing2D(thing, die = false):
+	await RenderingServer.frame_post_draw
+	var img: Image = $SubViewport.get_texture().get_image()
+	if thing != null:
+		thing.setTexture(ImageTexture.create_from_image(img))
+	if die: queue_free()

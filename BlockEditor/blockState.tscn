@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c842g5effgckp"]
+[gd_scene load_steps=17 format=3 uid="uid://c842g5effgckp"]
 
 [ext_resource type="PackedScene" uid="uid://cc8otxpsklx44" path="res://models/precomputed/unknown.tscn" id="1_f1dtb"]
 [ext_resource type="Script" path="res://BlockEditor/block_state.gd" id="1_j8krs"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cfw8sb065m1qf" path="res://Utils/DictionaryInput.tscn" id="5_clp6j"]
 [ext_resource type="Script" path="res://BlockEditor/state_generators_label.gd" id="5_kjyud"]
 [ext_resource type="PackedScene" uid="uid://kr2ssaxx2is2" path="res://TringPreviewer/ThingPreview3D.tscn" id="5_qvhg0"]
+[ext_resource type="Texture2D" uid="uid://diu7hdhhc8vtk" path="res://icon/folder.svg" id="9_1qnjq"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_imps2"]
 viewport_path = NodePath("wrapper/icon/SubViewportContainer/SubViewport")
@@ -112,6 +113,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="langKey" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "string"
 
@@ -125,6 +127,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="modelName" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "string"
 
@@ -137,7 +140,21 @@ text = "Model name"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="selectFile" type="Button" parent="wrapper/properties/modelName"]
+layout_mode = 2
+icon = ExtResource("9_1qnjq")
+flat = true
+
+[node name="selectModel" type="FileDialog" parent="wrapper/properties/modelName"]
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.json")
+use_native_dialog = true
+
 [node name="blockEventsId" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "string"
 
@@ -151,6 +168,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="dropId" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "string"
 
@@ -164,6 +182,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="allowSwapping" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "boolean"
 
@@ -175,9 +194,11 @@ text = "Allow swapping"
 [node name="boolean" type="CheckBox" parent="wrapper/properties/allowSwapping"]
 layout_mode = 2
 button_pressed = true
+text = " "
 flat = true
 
 [node name="isOpaque" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "boolean"
 
@@ -189,9 +210,11 @@ text = "Is opaque"
 [node name="boolean" type="CheckBox" parent="wrapper/properties/isOpaque"]
 layout_mode = 2
 button_pressed = true
+text = " "
 flat = true
 
 [node name="canRaycastForBreak" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "boolean"
 
@@ -203,9 +226,11 @@ text = "Can break"
 [node name="boolean" type="CheckBox" parent="wrapper/properties/canRaycastForBreak"]
 layout_mode = 2
 button_pressed = true
+text = " "
 flat = true
 
 [node name="canRaycastForPlaceOn" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "boolean"
 
@@ -217,9 +242,11 @@ text = "Can place on"
 [node name="boolean" type="CheckBox" parent="wrapper/properties/canRaycastForPlaceOn"]
 layout_mode = 2
 button_pressed = true
+text = " "
 flat = true
 
 [node name="canRaycastForReplace" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "boolean"
 
@@ -233,6 +260,7 @@ layout_mode = 2
 flat = true
 
 [node name="walkthrough" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "boolean"
 
@@ -246,6 +274,7 @@ layout_mode = 2
 flat = true
 
 [node name="catalogHidden" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "boolean"
 
@@ -259,6 +288,7 @@ layout_mode = 2
 flat = true
 
 [node name="isFluid" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "boolean"
 
@@ -272,6 +302,7 @@ layout_mode = 2
 flat = true
 
 [node name="lightAttenuation" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "int"
 
@@ -288,6 +319,7 @@ value = 15.0
 custom_arrow_step = 1.0
 
 [node name="light" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "color"
 
@@ -304,6 +336,7 @@ edit_alpha = false
 script = ExtResource("2_ioksj")
 
 [node name="rotXZ" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "int"
 
@@ -320,6 +353,7 @@ step = 90.0
 custom_arrow_step = 1.0
 
 [node name="hardness" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "float"
 
@@ -336,6 +370,7 @@ value = 1.5
 custom_arrow_step = 0.5
 
 [node name="blastResistance" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 metadata/type = "float"
 
@@ -349,6 +384,23 @@ layout_mode = 2
 size_flags_horizontal = 3
 step = 0.01
 value = 100.0
+custom_arrow_step = 1.0
+
+[node name="friction" type="HBoxContainer" parent="wrapper/properties"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+metadata/type = "float"
+
+[node name="label" type="Label" parent="wrapper/properties/friction"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Blast resistance"
+
+[node name="float" type="SpinBox" parent="wrapper/properties/friction"]
+layout_mode = 2
+size_flags_horizontal = 3
+step = 0.01
+value = 1.0
 custom_arrow_step = 1.0
 
 [node name="dropParams" type="VBoxContainer" parent="wrapper/properties"]
@@ -413,6 +465,8 @@ size_flags_vertical = 3
 [connection signal="text_changed" from="wrapper/properties/modelName/string" to="." method="changed"]
 [connection signal="text_changed" from="wrapper/properties/modelName/string" to="." method="model_changed"]
 [connection signal="text_submitted" from="wrapper/properties/modelName/string" to="." method="model_changed"]
+[connection signal="pressed" from="wrapper/properties/modelName/selectFile" to="." method="selectModel"]
+[connection signal="file_selected" from="wrapper/properties/modelName/selectModel" to="." method="modelSelected"]
 [connection signal="text_changed" from="wrapper/properties/blockEventsId/string" to="." method="changed"]
 [connection signal="text_changed" from="wrapper/properties/dropId/string" to="." method="changed"]
 [connection signal="pressed" from="wrapper/properties/allowSwapping/boolean" to="." method="changed"]
@@ -430,6 +484,7 @@ size_flags_vertical = 3
 [connection signal="value_changed" from="wrapper/properties/rotXZ/int" to="." method="_on_rotxz_value_changed"]
 [connection signal="changed" from="wrapper/properties/hardness/float" to="." method="changed"]
 [connection signal="changed" from="wrapper/properties/blastResistance/float" to="." method="changed"]
+[connection signal="changed" from="wrapper/properties/friction/float" to="." method="changed"]
 [connection signal="pressed" from="wrapper/properties/dropParams/labelwrapper/name" to="." method="_on_dropparamslabel_pressed"]
 [connection signal="pressed" from="wrapper/other/tagsLabel" to="wrapper/other/tagsLabel" method="_on_pressed"]
 [connection signal="text_changed" from="wrapper/other/tags" to="." method="changed"]

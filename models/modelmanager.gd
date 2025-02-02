@@ -4,6 +4,8 @@ var dir = null
 var models: Dictionary = {}
 var meshes: Dictionary = {}
 
+var renders: Dictionary = {}
+
 var emptymodel = preload("res://models/precomputed/empty.tscn")
 var unknownmodel = preload("res://models/precomputed/unknown.tscn").instantiate()
 var emptysprite = preload("res://models/precomputed/sprite.tscn")
@@ -11,14 +13,20 @@ var emptysprite = preload("res://models/precomputed/sprite.tscn")
 var cuboidscene = preload("res://models/precomputed/cuboid.tscn")
 var cuboidShader = preload("res://models/precomputed/cuboid.gdshader")
 
-func getModelMeshes(modelpath: String):
+var thingpreview3d = preload("res://TringPreviewer/ThingPreview3D.tscn")
+var thingpreview2d = preload("res://TringPreviewer/ThingPreview2D.tscn")
+var renderer = preload("res://TringPreviewer/Renderer.tscn")
+
+func getModelMeshes(modelpath: String, fresh: bool = true):
 	var cached = meshes.get(modelpath, null)
-	if cached != null:
+	if cached != null and not fresh:
 		#prints("loaded", modelpath, "from cache")
 		return meshes[modelpath].duplicate()
 	#prints("loading", modelpath)
 	var nodes: Array = []
 	var _path = Program.getAssetPath(modelpath)
+	if _path == null:
+		return []
 	var file = FileAccess.get_file_as_string(_path)
 	if file == null:
 		return []
@@ -28,7 +36,7 @@ func getModelMeshes(modelpath: String):
 	if contents == null:
 		return []
 	var textures = {}
-	for texture in contents["textures"].keys():
+	for texture in contents.get("textures", {}).keys():
 		textures[texture] = TextureManager.getTexture(contents["textures"][texture]["fileName"])
 	
 	var cuboids
@@ -37,7 +45,7 @@ func getModelMeshes(modelpath: String):
 		textures.merge(parentdata[1])
 		cuboids = parentdata[0]
 	else:
-		cuboids = contents["cuboids"]
+		cuboids = contents.get("cuboids", [])
 	var appliedtextures: Array = []
 	for cuboid in cuboids:
 		var c = getCuboidAsMesh(cuboid, textures)
@@ -61,16 +69,17 @@ func getParentCuboidsAndTextures(contents):
 		pc["cuboids"] = parentdata[0]
 	return [pc.get("cuboids", []), textures]
 
-func getModelScene(modelpath: String):
+func getModelScene(modelpath: String, fresh: bool = false):
 	var cached = models.get(modelpath, null)
-	if cached != null:
+	if cached != null and not fresh:
 		#prints("loaded", modelpath, "from cache")
 		return cached.duplicate()
 	var node = emptymodel.instantiate()
 	var meshes = getModelMeshes(modelpath)
 	if len(meshes) <= 0:
 		return unknownmodel.duplicate()
-	for m in meshes: node.add_child(m)
+	for m in meshes:
+		node.add_child(m.duplicate())
 	models[modelpath] = node
 	return node.duplicate()
 
@@ -107,3 +116,15 @@ func getCuboidAsMesh(cuboid, textures):
 		s.set_shader_parameter(fn + "UVsize", uvsize / tsize)
 		s.set_shader_parameter(fn + "Enabled", 1.0)
 	return c
+
+func setRenderTo2D(model: String, thing2d, size: Vector2 = Vector2(196, 196), fresh = false):
+	if not fresh:
+		if renders.has(size):
+			if renders[size].has(model):
+				return renders[size][model]
+	var thing = renderer.instantiate()
+	thing.setSize(size)
+	thing2d.setSize(size)
+	thing.setThing(model)
+	thing.setRenderToThing2D(thing2d, false)
+	return thing

@@ -40,6 +40,7 @@ func cleanup():
 		file.queue_free()
 	inEdit = {}
 	dir = null
+	Program.cleanup()
 
 func fileClicked(path: String, filename: String, editorScenePath, type: String, filetypes: Array):
 	var pathnoe = StringUtils.trimSuffixes(path, filetypes)
@@ -90,8 +91,10 @@ func save_current():
 	#if !editor.hasUnsavedChanges: return
 	editor.hasUnsavedChanges = false
 	for t in filetypes:
+		var contents = editor.getContents(t)
+		if contents == null: continue
 		var fa = FileAccess.open(file + t, FileAccess.WRITE)
-		fa.store_string(editor.getContents(t))
+		fa.store_string(contents)
 		fa.close()
 	$Contents/FilesInEdit.set_tab_icon(editor.get_index(), Icon.PENCIL)
 
@@ -141,6 +144,7 @@ func openProjectFromFile(file: String):
 	dir += "/"
 	Program.setDirs(modsdir, dir)
 	loadProject(dir)
+	Program.scan()
 	
 func openProjectFromFolder(dir: String):
 	dir = dir.replace("\\", "/").trim_suffix("/")
@@ -148,6 +152,7 @@ func openProjectFromFolder(dir: String):
 	dir += "/"
 	Program.setDirs(modsdir, dir)
 	loadProject(dir)
+	Program.scan()
 
 func loadProject(dir: String):
 	self.dir = dir
