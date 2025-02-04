@@ -61,8 +61,8 @@ const strtoactid = {
 	"set cuboid": {1: {"id": "base:set_cuboid", "paramnames": ["blockStateId"]},},
 	"set sphere": {1: {"id": "base:set_sphere", "paramnames": ["blockStateId"]},},
 	"sphere segment": {1: {"id": "base:set_spherical_segment", "paramnames": ["blockStateId"]},},
-	"increment_param": {1: {"id": "base:increment_param", "paramnames": []},},
-	"set params": {1: {"id": "base:set_block_state_params", "paramnames": []},},
+	"increment_param": {1: {"id": "base:increment_param", "paramnames": ["paramName"]},},
+	"set params": {1: {"id": "base:set_block_state_params", "paramnames": ["params"]},},
 }
 
 
